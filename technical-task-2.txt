@@ -1,0 +1,55 @@
+[Event Source(s)]
+     | 
+     v
+[AWS EventBridge]
+     |
+     v
+[Lambda: Event Router]
+     |
+     +--> [Check for Enrichment?] -- Yes --> [Lambda: Event Enrichment] --(calls)--> [External API]
+     |                                               |
+     |                                               v
+     |                                         [Enriched Event]
+     |                                               |
+     +--------------------------<--------------------+
+     |
+     v
+[Lambda: Notification Dispatcher]
+     |
+     +--> [DynamoDB: WebSocket Connections]
+     |        |
+     |        v
+     |   [API Gateway (WebSocket API)] ---> [Web Clients]
+     |
+     +--> [SNS: Push Notifications]
+     |        |
+     |        +--> [APNs (iOS)]
+     |        +--> [FCM (Android)]
+     |
+     +--> [SES: Email Service]
+              |
+              +--> [Email Templates (Multi-language)]
+              +--> [Send Email to Users]
+
+[CloudWatch Logs & Metrics]
+     ^           ^             ^
+     |           |             |
+ [All Lambda Functions]   [EventBridge]
+
+
+
+Explaination:
+
+EventBridge triggers the flow.
+
+Enrichment Lambda conditionally enriches the event using external APIs.
+
+Notification Dispatcher Lambda routes to WebSocket, Push, or Email.
+
+WebSocket support via API Gateway and DynamoDB connection tracking.
+
+Mobile push via SNS -> APNs / FCM.
+
+Email via SES using templates and dynamic content.
+
+Logging & Monitoring integrated via CloudWatch.

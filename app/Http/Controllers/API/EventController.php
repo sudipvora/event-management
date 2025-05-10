@@ -13,91 +13,117 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-    //
-
-    public function getList( Request $request ){
+    // Method to retrieve a list of events with pagination
+    public function getList(Request $request)
+    {
+        // Instantiate the EventService to handle event logic
         $eventService = new EventService();
-        $events = $eventService->getEvents( $request, $request->input('per_page', 20) );
+        // Call the service method to get events with the requested pagination
+        $events = $eventService->getEvents($request, $request->input('per_page', 20));
 
-        $res = new PaginationResponse( $events );
+        // Wrap the events data in the PaginationResponse resource to standardize the output
+        $res = new PaginationResponse($events);
 
-        return response()->json( $res, 200 );
+        // Return the paginated events list as a JSON response with a 200 status code
+        return response()->json($res, 200);
     }
 
-    public function create( CreateRequest $request ){
+    // Method to create a new event
+    public function create(CreateRequest $request)
+    {
+        // Initialize the response array and default status code
         $res = [];
         $code = 200;
-        try{
+
+        try {
+            // Instantiate the EventService to handle event creation
             $eventService = new EventService();
-            $event = $eventService->createEvent( $request );
+            // Call the service method to create a new event with the provided data
+            $event = $eventService->createEvent($request);
+            // Prepare a successful response with event data wrapped in the EventSingleResponse resource
             $res = [
                 'success' => true,
                 'message' => 'Success! Event has been created successfully.',
-                'data' => new EventSingleResponse( $event )
+                'data' => new EventSingleResponse($event)  // Event data wrapped in a resource
             ];
 
-        }catch(\Exception $e ){
+        } catch (\Exception $e) {
+            // In case of an error, prepare the error response
             $res = [
                 'success' => 'false',
-                'errors' => [],
-                'message' => $e->getMessage()
+                'errors' => [],  // Empty errors array, can be expanded if necessary
+                'message' => $e->getMessage()  // Include the exception message in the response
             ];
-            $code = 500;
+            $code = 500;  // Set status code to 500 for server error
         }
 
-
-        return response()->json( $res, $code );
+        // Return the response in JSON format with the appropriate status code
+        return response()->json($res, $code);
     }
 
-    public function update( UpdateRequest $request, Event $event ){
+    // Method to update an existing event
+    public function update(UpdateRequest $request, Event $event)
+    {
+        // Initialize the response array and default status code
         $res = [];
         $code = 200;
-        try{
+
+        try {
+            // Instantiate the EventService to handle event updates
             $eventService = new EventService();
-            $event = $eventService->updateEvent( $request, $event );
+            // Call the service method to update the event with the provided data
+            $event = $eventService->updateEvent($request, $event);
+            // Prepare a successful response with updated event data wrapped in the EventSingleResponse resource
             $res = [
                 'success' => true,
                 'message' => 'Success! Event data has been updated successfully.',
-                'data' => new EventSingleResponse( $event )
+                'data' => new EventSingleResponse($event)  // Updated event data wrapped in a resource
             ];
 
-        }catch(\Exception $e ){
+        } catch (\Exception $e) {
+            // In case of an error, prepare the error response
             $res = [
                 'success' => 'false',
-                'errors' => [],
-                'message' => $e->getMessage()
+                'errors' => [],  // Empty errors array, can be expanded if necessary
+                'message' => $e->getMessage()  // Include the exception message in the response
             ];
-            $code = 500;
+            $code = 500;  // Set status code to 500 for server error
         }
 
-
-        return response()->json( $res, $code );
+        // Return the response in JSON format with the appropriate status code
+        return response()->json($res, $code);
     }
 
-    public function delete( Event $event ){
-
+    // Method to delete an event
+    public function delete(Event $event)
+    {
+        // Initialize the response array and default status code
         $res = [];
         $code = 200;
 
-        try{
+        try {
+            // Instantiate the EventService to handle event deletion
             $eventService = new EventService();
-            $event = $eventService->deleteEvent( $event );
+            // Call the service method to delete the event
+            $event = $eventService->deleteEvent($event);
+            // Prepare a successful response with a confirmation message
             $res = [
                 'success' => true,
                 'message' => 'Success! Event data has been removed successfully.',
-                'data' => (object)[]
+                'data' => (object)[]  // Empty data object, as no additional data is returned
             ];
 
-        }catch(\Exception $e ){
+        } catch (\Exception $e) {
+            // In case of an error, prepare the error response
             $res = [
                 'success' => 'false',
-                'errors' => [],
-                'message' => $e->getMessage()
+                'errors' => [],  // Empty errors array, can be expanded if necessary
+                'message' => $e->getMessage()  // Include the exception message in the response
             ];
-            $code = 500;
+            $code = 500;  // Set status code to 500 for server error
         }
 
-
-        return response()->json( $res, $code );
+        // Return the response in JSON format with the appropriate status code
+        return response()->json($res, $code);
     }
 }
