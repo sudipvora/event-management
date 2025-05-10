@@ -1,0 +1,311 @@
+{
+	"info": {
+		"_postman_id": "27ff38af-9484-4efa-8b6d-ceef58a34612",
+		"name": "EventApiTestDemo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4066940"
+	},
+	"item": [
+		{
+			"name": "events",
+			"item": [
+				{
+					"name": "events-list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}events/lists?sort_by=updated_at&sort_dir=desc",
+							"host": [
+								"{{api_url}}events"
+							],
+							"path": [
+								"lists"
+							],
+							"query": [
+								{
+									"key": "sort_by",
+									"value": "updated_at"
+								},
+								{
+									"key": "sort_dir",
+									"value": "desc"
+								},
+								{
+									"key": "search",
+									"value": "Any",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"John Doe Event\",\r\n    \"description\": \"Lorem ipsum is a dummy conetn\",\r\n    \"location\": \"Lorem ipsum\",\r\n    \"capacity\": \"12\",\r\n    \"event_date\": \"2025-05-20\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}events/create",
+							"host": [
+								"{{api_url}}events"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Event name change\",\r\n    \"description\": \"Event description content goes here\",\r\n    \"location\": \"India Location\",\r\n    \"capacity\": \"10\",\r\n    \"event_date\": \"2025-05-12\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}events/1/update",
+							"host": [
+								"{{api_url}}events"
+							],
+							"path": [
+								"1",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-event",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}events/1/delete",
+							"host": [
+								"{{api_url}}events"
+							],
+							"path": [
+								"1",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "attendees",
+			"item": [
+				{
+					"name": "attendee-details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_url}}attendee/1/show",
+							"host": [
+								"{{api_url}}attendee"
+							],
+							"path": [
+								"1",
+								"show"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-attendee",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"John Doe User\",\r\n    \"email\": \"john_doe.user@mailinator.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}attendee/create",
+							"host": [
+								"{{api_url}}attendee"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-attendee",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"john Update\",\r\n    \"email\": \"john.doe@mailinator.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}attendee/1/update",
+							"host": [
+								"{{api_url}}attendee"
+							],
+							"path": [
+								"1",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "booking",
+			"item": [
+				{
+					"name": "create-booking",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"event_id\": \"2\",\r\n    \"attendee_id\": \"5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}booking/create",
+							"host": [
+								"{{api_url}}booking"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
