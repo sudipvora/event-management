@@ -10,18 +10,18 @@
                                      |
                                      v
                          +------------------------+
-                         |    Requests(If needed) |
-                         |  - Event               |
-                         |  - Attendee            |
-                         |  - Booking             |
-                         +-----------+------------+
-                                     |
-                                     v
-                         +------------------------+
                          |     Controllers        |
                          |  - EventController     |
                          |  - AttendeeController  |
                          |  - BookingController   |
+                         +-----------+------------+
+                                     |
+                                     v
+                         +------------------------+
+                         |    Requests(If needed) |
+                         |  - Event               |
+                         |  - Attendee            |
+                         |  - Booking             |
                          +-----------+------------+
                                      |
                                      v
