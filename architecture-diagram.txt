@@ -1,0 +1,49 @@
+                        +--------------------------+
+                        |    API Consumers (User)  |
+                        +------------+-------------+
+                                     |
+                                     v
+                         +------------------------+
+                         |     API Routes         |
+                         |  (routes/api.php)      |
+                         +-----------+------------+
+                                     |
+                                     v
+                         +------------------------+
+                         |    Requests(If needed) |
+                         |  - Event               |
+                         |  - Attendee            |
+                         |  - Booking             |
+                         +-----------+------------+
+                                     |
+                                     v
+                         +------------------------+
+                         |     Controllers        |
+                         |  - EventController     |
+                         |  - AttendeeController  |
+                         |  - BookingController   |
+                         +-----------+------------+
+                                     |
+                                     v
+                         +------------------------+
+                         |        Services        |
+                         |  - EventService        |
+                         |  - AttendeeService     |
+                         |  - BookingService      |
+                         +-----------+------------+
+                                     |
+                                     v
+                         +------------------------+
+                         |     Models (Eloquent)  |
+                         |  - Event               |
+                         |  - Attendee            |
+                         |  - Booking             |
+                         +-----------+------------+
+                                     |
+                                     v
+                         +------------------------+
+                         |     Database Tables     |
+                         |  - events              |
+                         |  - attendees           |
+                         |  - bookings            |
+                         +------------------------+
